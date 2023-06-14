@@ -36,7 +36,12 @@ assistant:
 temperature = 0.3
 
 st.title("Query David Benjamin's Teachings")
-def get_long_term_memory(user_input: str, num_results=30):
+
+
+user_input = st.text_input("Your query - be as specific as possible for best results, and guide the model with content you know you want to see in response.")
+
+if st.button("Send"):
+    def get_long_term_memory(user_input: str, num_results=30):
     knowledge_base_ids = ["6e7d0ae2-71f8-46d6-85f2-f3d22cf40064","4b177cf2-bb2e-4752-8567-1c78129216d9"]
     results = query_knowledge_bases(
         knowledge_base_ids=knowledge_base_ids,
@@ -53,10 +58,6 @@ def get_long_term_memory(user_input: str, num_results=30):
     # Format the results into a string that can be used by GPT-3
     long_term_memory = "\n".join([result['content'] for result in results["ranked_results"]])
     return long_term_memory
-
-user_input = st.text_input("Your query - be as specific as possible for best results, and guide the model with content you know you want to see in response.")
-
-if st.button("Send"):
     ai_response = None
 
     if user_input:
