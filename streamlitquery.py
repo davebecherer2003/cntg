@@ -59,8 +59,6 @@ if st.button("Send"):
         long_term_memory = "\n".join([result['content'] for result in results["ranked_results"]])
         return long_term_memory
 
-    ai_response = None
-
     if user_input:
         long_term_memory = get_long_term_memory(user_input, num_results=25)
         prompt = prompt_template.format(
@@ -86,6 +84,6 @@ if st.button("Send"):
         # Store chatbot output in session state
         st.session_state.chatbot_output = ai_response
 
-    # Retrieve chatbot output from session state
-    ai_response_formatted = st.session_state.chatbot_output.replace('\n', '<br>')
-    st.markdown(f'<p style="font-size:18px"><b>Chatbot:</b> {ai_response_formatted}</p>', unsafe_allow_html=True)
+    # Display chatbot output
+    chatbot_output_placeholder = st.empty()
+    chatbot_output_placeholder.markdown(f'<p style="font-size:18px"><b>Chatbot:</b> {ai_response}</p>', unsafe_allow_html=True)
