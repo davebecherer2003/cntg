@@ -6,7 +6,9 @@ import openai
 import os
 import streamlit as st
 
-# Get environment variables from streamlit.toml file
+# Get environment variables from streamlit.toml 
+
+
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 superpowered_api_key_id = st.secrets["SUPERPOWERED_API_KEY_ID"]
 superpowered_api_key_secret = st.secrets["SUPERPOWERED_API_KEY_SECRET"]
@@ -34,7 +36,7 @@ assistant:
 temperature = 0.3
 
 st.title("Query David Benjamin's Teachings")
-def get_long_term_memory(user_input: str, num_results=25):
+def get_long_term_memory(user_input: str, num_results=30):
     knowledge_base_ids = ["6e7d0ae2-71f8-46d6-85f2-f3d22cf40064","4b177cf2-bb2e-4752-8567-1c78129216d9"]
     results = query_knowledge_bases(
         knowledge_base_ids=knowledge_base_ids,
@@ -79,8 +81,7 @@ if st.button("Send"):
         )
         ai_response = response['choices'][0]['message']['content'].strip()
 
-        write_conversation_to_file("User", user_input)
-        write_conversation_to_file("Assistant", ai_response)
+
 
     if ai_response is not None:
         ai_response_formatted = ai_response.replace('\n', '<br>')
