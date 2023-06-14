@@ -18,7 +18,7 @@ os.environ["SUPERPOWERED_API_KEY_SECRET"] = superpowered_api_key_secret
 
 # Rest of your code goes here
 # Initialize Superpowered API
-set_api_key(SUPERPOWERED_API_KEY_ID, SUPERPOWERED_API_KEY_SECRET)
+#set_api_key(SUPERPOWERED_API_KEY_ID, SUPERPOWERED_API_KEY_SECRET)
 
 # Create the prompt template for the LLM call
 prompt_template = """
