@@ -3,12 +3,20 @@ import datetime
 import streamlit as st
 from superpowered import set_api_key, query_knowledge_bases
 import openai
+import os
+import streamlit as st
 
-# Get API keys from environment variables
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-SUPERPOWERED_API_KEY_ID = os.getenv("SUPERPOWERED_API_KEY_ID")
-SUPERPOWERED_API_KEY_SECRET = os.getenv("SUPERPOWERED_API_KEY_SECRET")
+# Get environment variables from streamlit.toml file
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+superpowered_api_key_id = st.secrets["SUPERPOWERED_API_KEY_ID"]
+superpowered_api_key_secret = st.secrets["SUPERPOWERED_API_KEY_SECRET"]
 
+# Use environment variables in your code
+os.environ["OPENAI_API_KEY"] = openai_api_key
+os.environ["SUPERPOWERED_API_KEY_ID"] = superpowered_api_key_id
+os.environ["SUPERPOWERED_API_KEY_SECRET"] = superpowered_api_key_secret
+
+# Rest of your code goes here
 # Initialize Superpowered API
 set_api_key(SUPERPOWERED_API_KEY_ID, SUPERPOWERED_API_KEY_SECRET)
 
