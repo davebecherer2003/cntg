@@ -37,7 +37,7 @@ temperature = 0.3
 st.title("Query David Benjamin's Teachings")
 
 @st.cache
-def get_long_term_memory(user_input: str, num_results=30):
+def get_long_term_memory(user_input: str, num_results=18):
     knowledge_base_ids = ["6e7d0ae2-71f8-46d6-85f2-f3d22cf40064","4b177cf2-bb2e-4752-8567-1c78129216d9"]
     results = query_knowledge_bases(
         knowledge_base_ids=knowledge_base_ids,
@@ -60,7 +60,7 @@ user_input = st.text_input("Your query - be as specific as possible for best res
 
 if st.button("Send"):
     if user_input:
-        long_term_memory = get_long_term_memory(user_input, num_results=25)
+        long_term_memory = get_long_term_memory(user_input, num_results=18)
         prompt = prompt_template.format(
             long_term_memory=long_term_memory,
             user_input=user_input
