@@ -16,9 +16,8 @@ os.environ["OPENAI_API_KEY"] = openai_api_key
 os.environ["SUPERPOWERED_API_KEY_ID"] = superpowered_api_key_id
 os.environ["SUPERPOWERED_API_KEY_SECRET"] = superpowered_api_key_secret
 
-# Initialize session state
-if "chatbot_output" not in st.session_state:
-    st.session_state.chatbot_output = ""
+# Initialize chatbot output
+chatbot_output = ""
 
 # Rest of your code goes here
 # Initialize Superpowered API
@@ -79,11 +78,8 @@ if st.button("Send"):
             max_tokens=1800,
             temperature=temperature,
         )
-        ai_response = response['choices'][0]['message']['content'].strip()
+        chatbot_output = response['choices'][0]['message']['content'].strip()
 
-        # Store chatbot output in session state
-        st.session_state.chatbot_output = ai_response
-
-    # Display chatbot output
-    chatbot_output_placeholder = st.empty()
-    chatbot_output_placeholder.markdown(f'<p style="font-size:18px"><b>Chatbot:</b> {ai_response}</p>', unsafe_allow_html=True)
+    # Display chatbot output if available
+    if chatbot_output:
+        st.markdown(f'<p style="font-size:18px"><b>Chatbot:</b> {chatbot_output}</p>', unsafe_allow_html=True)
