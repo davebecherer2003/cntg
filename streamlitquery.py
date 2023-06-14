@@ -36,7 +36,7 @@ temperature = 0.3
 
 st.title("Query David Benjamin's Teachings")
 
-@st.cache
+@st.cache_data
 def get_long_term_memory(user_input: str, num_results=18):
     knowledge_base_ids = ["6e7d0ae2-71f8-46d6-85f2-f3d22cf40064","4b177cf2-bb2e-4752-8567-1c78129216d9"]
     results = query_knowledge_bases(
